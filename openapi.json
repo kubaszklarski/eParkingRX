@@ -1,0 +1,1326 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "eParkingRX API",
+    "description": "This is API definition for eParkingRX application",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "kuba.szklarski@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/v1"
+    },
+    {
+      "url": "https://localhost:8080/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "eParkingRX",
+      "description": "eParkingRX services"
+    }
+  ],
+  "paths": {
+    "/accounts": {
+      "post": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Account registration",
+        "operationId": "RegisterAccount",
+        "requestBody": {
+          "description": "Account registration input",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterAccount"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterAccount"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Account registered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterAccountResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterAccountResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "External system fault",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          }
+        },
+        "x-contentType": "application/json",
+        "x-accepts": "application/json",
+        "x-codegen-request-body-name": "RegisterAccount"
+      }
+    },
+    "/accounts/{AccountId}": {
+      "get": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Account retrieval",
+        "operationId": "RetrieveAccount",
+        "parameters": [
+          {
+            "name": "AccountId",
+            "in": "path",
+            "description": "identification of account object",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetrieveAccountResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetrieveAccountResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "External system fault",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          }
+        },
+        "x-accepts": "application/json"
+      },
+      "delete": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Account deactivation",
+        "operationId": "DisableAccount",
+        "parameters": [
+          {
+            "name": "AccountId",
+            "in": "path",
+            "description": "identification of account object",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "OK",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "External system fault",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          }
+        },
+        "x-accepts": "application/json"
+      }
+    },
+    "/accounts/validate": {
+      "post": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Account validation",
+        "operationId": "ValidateAccount",
+        "requestBody": {
+          "description": "Account validation input",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateAccount"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateAccount"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Account validated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateAccountResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateAccountResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "External system fault",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          }
+        },
+        "x-contentType": "application/json",
+        "x-accepts": "application/json",
+        "x-codegen-request-body-name": "ValidateAccount"
+      }
+    },
+    "/payments": {
+      "post": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Payment registration",
+        "operationId": "RegisterPayment",
+        "requestBody": {
+          "description": "Payment registration input",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterPayment"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterPayment"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Payment registered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterPaymentResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterPaymentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "External system fault",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          }
+        },
+        "x-contentType": "application/json",
+        "x-accepts": "application/json",
+        "x-codegen-request-body-name": "RegisterPayment"
+      }
+    },
+    "/payments/{AccountId}": {
+      "get": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Payment balance check",
+        "operationId": "CheckBalance",
+        "parameters": [
+          {
+            "name": "AccountId",
+            "in": "path",
+            "description": "identification of account object",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckBalanceResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckBalanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "External system fault",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          }
+        },
+        "x-accepts": "application/json"
+      }
+    },
+    "/fees": {
+      "post": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Parking fee charge",
+        "operationId": "ChargeFee",
+        "requestBody": {
+          "description": "Charge fee",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChargeFee"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ChargeFee"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Fee charged",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChargeFeeResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChargeFeeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "External system fault",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          }
+        },
+        "x-contentType": "application/json",
+        "x-accepts": "application/json",
+        "x-codegen-request-body-name": "ChargeFee"
+      }
+    },
+    "/rates": {
+      "put": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Update parking rates",
+        "operationId": "SetRate",
+        "requestBody": {
+          "description": "Parking rate input",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetRate"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/SetRate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Parking rate updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetRateResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetRateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "External system fault",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          }
+        },
+        "x-contentType": "application/json",
+        "x-accepts": "application/json",
+        "x-codegen-request-body-name": "SetRate"
+      }
+    },
+    "/parking": {
+      "post": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Parking start",
+        "operationId": "StartParking",
+        "requestBody": {
+          "description": "Start parking input",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartParking"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/StartParking"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Parking started",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartParkingResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartParkingResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "External system fault",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          }
+        },
+        "x-contentType": "application/json",
+        "x-accepts": "application/json",
+        "x-codegen-request-body-name": "StartParking"
+      }
+    },
+    "/parking/{ParkingId}": {
+      "delete": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Parking end",
+        "operationId": "EndParking",
+        "parameters": [
+          {
+            "name": "ParkingId",
+            "in": "path",
+            "description": "identification of parking object",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Parking ended",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EndParkingResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EndParkingResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal system error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "External system fault",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fault"
+                }
+              }
+            }
+          }
+        },
+        "x-accepts": "application/json"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RegisterAccount": {
+        "type": "object",
+        "properties": {
+          "Amount": {
+            "$ref": "#/components/schemas/Amount"
+          },
+          "Client": {
+            "$ref": "#/components/schemas/Client"
+          },
+          "Vehicle": {
+            "$ref": "#/components/schemas/Vehicle"
+          }
+        },
+        "description": "information about clients account"
+      },
+      "RegisterAccountResponse": {
+        "type": "object",
+        "properties": {
+          "AccountId": {
+            "$ref": "#/components/schemas/AccountId"
+          }
+        },
+        "description": "information about clients account"
+      },
+      "RetrieveAccountResponse": {
+        "type": "object",
+        "properties": {
+          "Account": {
+            "$ref": "#/components/schemas/Account"
+          }
+        },
+        "description": "information about clients account"
+      },
+      "ValidateAccount": {
+        "type": "object",
+        "properties": {
+          "Amount": {
+            "$ref": "#/components/schemas/Amount"
+          },
+          "Client": {
+            "$ref": "#/components/schemas/Client"
+          },
+          "Vehicle": {
+            "$ref": "#/components/schemas/Vehicle"
+          }
+        },
+        "description": "information required to perform account validation"
+      },
+      "ValidateAccountResponse": {
+        "type": "object",
+        "properties": {
+          "ValidationResult": {
+            "$ref": "#/components/schemas/ValidationResult"
+          }
+        },
+        "description": "account validation result"
+      },
+      "RegisterPayment": {
+        "type": "object",
+        "properties": {
+          "AccountId": {
+            "$ref": "#/components/schemas/AccountId"
+          },
+          "Amount": {
+            "$ref": "#/components/schemas/Amount"
+          }
+        },
+        "description": "information about topping up the account"
+      },
+      "RegisterPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "Payment": {
+            "$ref": "#/components/schemas/Payment"
+          }
+        },
+        "description": "information about clients account"
+      },
+      "CheckBalanceResponse": {
+        "type": "object",
+        "properties": {
+          "Amount": {
+            "$ref": "#/components/schemas/Amount"
+          }
+        },
+        "description": "information about topping up the account"
+      },
+      "ChargeFee": {
+        "type": "object",
+        "properties": {
+          "Parking": {
+            "$ref": "#/components/schemas/Parking"
+          }
+        },
+        "description": "information about amount charged for parking"
+      },
+      "ChargeFeeResponse": {
+        "type": "object",
+        "properties": {
+          "Amount": {
+            "$ref": "#/components/schemas/Amount"
+          }
+        },
+        "description": "information about amount charged for parking"
+      },
+      "SetRate": {
+        "type": "object",
+        "properties": {
+          "Amount": {
+            "$ref": "#/components/schemas/Amount"
+          }
+        },
+        "description": "information about parking rate per minute"
+      },
+      "SetRateResponse": {
+        "type": "object",
+        "properties": {
+          "Rate": {
+            "$ref": "#/components/schemas/Rate"
+          }
+        },
+        "description": "information about clients account"
+      },
+      "StartParking": {
+        "type": "object",
+        "properties": {
+          "AccountId": {
+            "$ref": "#/components/schemas/AccountId"
+          },
+          "ParkingType": {
+            "$ref": "#/components/schemas/ParkingType"
+          },
+          "ParkingStartTime": {
+            "$ref": "#/components/schemas/ParkingStartTime"
+          },
+          "ParkingEndTime": {
+            "$ref": "#/components/schemas/ParkingEndTime"
+          },
+          "ParkingPeriod": {
+            "$ref": "#/components/schemas/ParkingPeriod"
+          }
+        },
+        "description": "information about amount charged for parking"
+      },
+      "StartParkingResponse": {
+        "type": "object",
+        "properties": {
+          "ParkingId": {
+            "$ref": "#/components/schemas/ParkingId"
+          }
+        },
+        "description": "information about amount charged for parking"
+      },
+      "EndParkingResponse": {
+        "type": "object",
+        "properties": {
+          "Amount": {
+            "$ref": "#/components/schemas/Amount"
+          }
+        },
+        "description": "information about amount charged for parking"
+      },
+      "AccountId": {
+        "type": "string",
+        "description": "identification of account object",
+        "format": "uuid",
+        "example": "1f880e91-18b8-40c9-8363-41c20a5976ab"
+      },
+      "ParkingId": {
+        "type": "string",
+        "description": "identification of parking object",
+        "format": "uuid",
+        "example": "1f880e91-18b8-40c9-8363-41c20a5976ab"
+      },
+      "PaymentId": {
+        "type": "string",
+        "description": "identification of payment object",
+        "format": "uuid",
+        "example": "1f880e91-18b8-40c9-8363-41c20a5976ab"
+      },
+      "Amount": {
+        "type": "number",
+        "description": "universal amount",
+        "format": "double",
+        "example": 10
+      },
+      "Account": {
+        "type": "object",
+        "properties": {
+          "AccountId": {
+            "$ref": "#/components/schemas/AccountId"
+          },
+          "Amount": {
+            "$ref": "#/components/schemas/Amount"
+          },
+          "Client": {
+            "$ref": "#/components/schemas/Client"
+          },
+          "Vehicle": {
+            "$ref": "#/components/schemas/Vehicle"
+          }
+        },
+        "description": "information about clients account"
+      },
+      "Client": {
+        "type": "object",
+        "properties": {
+          "FirstName": {
+            "type": "string",
+            "description": "clients first name",
+            "example": "Jan"
+          },
+          "LastName": {
+            "type": "string",
+            "description": "clients last name",
+            "example": "Kowalski"
+          },
+          "Pesel": {
+            "type": "string",
+            "description": "clients pesel identification number",
+            "example": "80112200777"
+          }
+        },
+        "description": "details of clients identification information"
+      },
+      "Vehicle": {
+        "type": "object",
+        "properties": {
+          "RegistrationNumber": {
+            "type": "string",
+            "description": "clients vehicle registration number",
+            "example": "WW12345"
+          },
+          "VinNumber": {
+            "type": "string",
+            "description": "clients vehicle vin number",
+            "example": "JTDZN3EU5FJ016414"
+          },
+          "Brand": {
+            "type": "string",
+            "description": "clients vehicle brand name",
+            "example": "Opel"
+          },
+          "Model": {
+            "type": "string",
+            "description": "clients vehicle brand model name",
+            "example": "Corsa"
+          },
+          "ProductionDate": {
+            "type": "string",
+            "description": "clients vehicle production date",
+            "format": "date",
+            "example": "2018-03-15"
+          }
+        },
+        "description": "details of clients vehicle"
+      },
+      "Parking": {
+        "type": "object",
+        "properties": {
+          "ParkingId": {
+            "$ref": "#/components/schemas/ParkingId"
+          },
+          "AccountId": {
+            "$ref": "#/components/schemas/AccountId"
+          },
+          "ParkingType": {
+            "$ref": "#/components/schemas/ParkingType"
+          },
+          "ParkingStatus": {
+            "$ref": "#/components/schemas/ParkingStatus"
+          },
+          "ParkingStartTime": {
+            "$ref": "#/components/schemas/ParkingStartTime"
+          },
+          "ParkingEndTime": {
+            "$ref": "#/components/schemas/ParkingEndTime"
+          },
+          "ParkingPeriod": {
+            "$ref": "#/components/schemas/ParkingPeriod"
+          }
+        },
+        "description": "information about parking activity"
+      },
+      "ParkingType": {
+        "type": "string",
+        "description": "DEADLINE is parking until specific hour, PERIOD is parking for specific time",
+        "example": "DEADLINE",
+        "enum": [
+          "DEADLINE",
+          "PERIOD"
+        ]
+      },
+      "ParkingStatus": {
+        "type": "string",
+        "description": "ACTIVE is current parking, COMPLETED is after parking ends, ENDED is before parking ends",
+        "example": "ACTIVE",
+        "enum": [
+          "ACTIVE",
+          "COMPLETED",
+          "ENDED"
+        ]
+      },
+      "ParkingStartTime": {
+        "type": "string",
+        "description": "parking starting hour",
+        "format": "date-time",
+        "example": "2020-07-21T17:32:28Z"
+      },
+      "ParkingEndTime": {
+        "type": "string",
+        "description": "parking ending hour",
+        "format": "date-time",
+        "example": "2020-07-21T17:32:28Z"
+      },
+      "ParkingPeriod": {
+        "type": "number",
+        "description": "parking period, time in seconds between parking start and parking end",
+        "format": "double",
+        "example": 600
+      },
+      "Payment": {
+        "type": "object",
+        "properties": {
+          "PaymentId": {
+            "$ref": "#/components/schemas/PaymentId"
+          },
+          "AccountId": {
+            "$ref": "#/components/schemas/AccountId"
+          },
+          "Amount": {
+            "$ref": "#/components/schemas/Amount"
+          }
+        },
+        "description": "information about topping up the account"
+      },
+      "Rate": {
+        "type": "object",
+        "properties": {
+          "RateAmount": {
+            "$ref": "#/components/schemas/Amount"
+          }
+        },
+        "description": "information about parking rate per minute"
+      },
+      "ValidationResult": {
+        "type": "object",
+        "properties": {
+          "Result": {
+            "type": "string",
+            "description": "validation result",
+            "enum": [
+              "VALID",
+              "INVALID"
+            ]
+          },
+          "Messages": {
+            "type": "array",
+            "description": "list of validation messages",
+            "items": {
+              "type": "string",
+              "description": "validation message"
+            }
+          }
+        },
+        "description": "generic validation result"
+      },
+      "Fault": {
+        "type": "object",
+        "properties": {
+          "Type": {
+            "type": "string",
+            "description": "type of fault",
+            "enum": [
+              "VALIDATION",
+              "TECHNICAL",
+              "BUSINESS"
+            ]
+          },
+          "Code": {
+            "type": "string",
+            "description": "fault code",
+            "example": "100009"
+          },
+          "Message": {
+            "type": "string",
+            "description": "fault message",
+            "example": "Invalid input element"
+          },
+          "Details": {
+            "type": "string",
+            "description": "fault details",
+            "example": "Element Rate value XXX is not valid"
+          }
+        },
+        "description": "generic fault"
+      }
+    }
+  }
+}

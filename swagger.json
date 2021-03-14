@@ -1,0 +1,892 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is API definition for eParkingRX application",
+    "version": "1.0.0",
+    "title": "eParkingRX API",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "kuba.szklarski@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/v1",
+  "tags": [
+    {
+      "name": "eParkingRX",
+      "description": "eParkingRX services"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/accounts": {
+      "post": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Account registration",
+        "operationId": "RegisterAccount",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/RegisterAccount"
+          }
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/responses/RegisterAccountResponse"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "500": {
+            "$ref": "#/responses/500"
+          },
+          "502": {
+            "$ref": "#/responses/502"
+          }
+        },
+        "x-contentType": "application/json",
+        "x-accepts": "application/json"
+      }
+    },
+    "/accounts/{AccountId}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/AccountId_PathParameter"
+        }
+      ],
+      "get": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Account retrieval",
+        "operationId": "RetrieveAccount",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/RetrieveAccountResponse"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "500": {
+            "$ref": "#/responses/500"
+          },
+          "502": {
+            "$ref": "#/responses/502"
+          }
+        },
+        "x-accepts": "application/json"
+      },
+      "delete": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Account deactivation",
+        "operationId": "DisableAccount",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "responses": {
+          "204": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "500": {
+            "$ref": "#/responses/500"
+          },
+          "502": {
+            "$ref": "#/responses/502"
+          }
+        },
+        "x-accepts": "application/json"
+      }
+    },
+    "/accounts/validate": {
+      "post": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Account validation",
+        "operationId": "ValidateAccount",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ValidateAccount",
+            "description": "Account validation input",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateAccount"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account validated",
+            "schema": {
+              "$ref": "#/definitions/ValidateAccountResponse"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "500": {
+            "$ref": "#/responses/500"
+          },
+          "502": {
+            "$ref": "#/responses/502"
+          }
+        },
+        "x-contentType": "application/json",
+        "x-accepts": "application/json"
+      }
+    },
+    "/payments": {
+      "post": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Payment registration",
+        "operationId": "RegisterPayment",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "RegisterPayment",
+            "description": "Payment registration input",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RegisterPayment"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Payment registered",
+            "schema": {
+              "$ref": "#/definitions/RegisterPaymentResponse"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "500": {
+            "$ref": "#/responses/500"
+          },
+          "502": {
+            "$ref": "#/responses/502"
+          }
+        },
+        "x-contentType": "application/json",
+        "x-accepts": "application/json"
+      }
+    },
+    "/payments/{AccountId}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/AccountId_PathParameter"
+        }
+      ],
+      "get": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Payment balance check",
+        "operationId": "CheckBalance",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CheckBalanceResponse"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          },
+          "500": {
+            "$ref": "#/responses/500"
+          },
+          "502": {
+            "$ref": "#/responses/502"
+          }
+        },
+        "x-accepts": "application/json"
+      }
+    },
+    "/fees": {
+      "post": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Parking fee charge",
+        "operationId": "ChargeFee",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ChargeFee",
+            "description": "Charge fee",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChargeFee"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Fee charged",
+            "schema": {
+              "$ref": "#/definitions/ChargeFeeResponse"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "500": {
+            "$ref": "#/responses/500"
+          },
+          "502": {
+            "$ref": "#/responses/502"
+          }
+        },
+        "x-contentType": "application/json",
+        "x-accepts": "application/json"
+      }
+    },
+    "/rates": {
+      "put": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Update parking rates",
+        "operationId": "SetRate",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "SetRate",
+            "description": "Parking rate input",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SetRate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Parking rate updated",
+            "schema": {
+              "$ref": "#/definitions/SetRateResponse"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "500": {
+            "$ref": "#/responses/500"
+          },
+          "502": {
+            "$ref": "#/responses/502"
+          }
+        },
+        "x-contentType": "application/json",
+        "x-accepts": "application/json"
+      }
+    },
+    "/parking": {
+      "post": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Parking start",
+        "operationId": "StartParking",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "StartParking",
+            "description": "Start parking input",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StartParking"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Parking started",
+            "schema": {
+              "$ref": "#/definitions/StartParkingResponse"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "500": {
+            "$ref": "#/responses/500"
+          },
+          "502": {
+            "$ref": "#/responses/502"
+          }
+        },
+        "x-contentType": "application/json",
+        "x-accepts": "application/json"
+      }
+    },
+    "/parking/{ParkingId}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/ParkingId_PathParameter"
+        }
+      ],
+      "delete": {
+        "tags": [
+          "eParkingRX"
+        ],
+        "summary": "Parking end",
+        "operationId": "EndParking",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "Parking ended",
+            "schema": {
+              "$ref": "#/definitions/EndParkingResponse"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/400"
+          },
+          "500": {
+            "$ref": "#/responses/500"
+          },
+          "502": {
+            "$ref": "#/responses/502"
+          }
+        },
+        "x-accepts": "application/json"
+      }
+    }
+  },
+  "parameters": {
+    "RegisterAccount": {
+      "in": "body",
+      "name": "RegisterAccount",
+      "description": "Account registration input",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/RegisterAccount"
+      }
+    },
+    "AccountId_PathParameter": {
+      "name": "AccountId",
+      "in": "path",
+      "type": "string",
+      "format": "uuid",
+      "required": true,
+      "description": "identification of account object"
+    },
+    "ParkingId_PathParameter": {
+      "name": "ParkingId",
+      "in": "path",
+      "type": "string",
+      "format": "uuid",
+      "required": true,
+      "description": "identification of parking object"
+    }
+  },
+  "responses": {
+    "400": {
+      "description": "Invalid input",
+      "schema": {
+        "$ref": "#/definitions/Fault"
+      }
+    },
+    "404": {
+      "description": "Data not found",
+      "schema": {
+        "$ref": "#/definitions/Fault"
+      }
+    },
+    "500": {
+      "description": "Internal system error",
+      "schema": {
+        "$ref": "#/definitions/Fault"
+      }
+    },
+    "502": {
+      "description": "External system fault",
+      "schema": {
+        "$ref": "#/definitions/Fault"
+      }
+    },
+    "RegisterAccountResponse": {
+      "description": "Account registered",
+      "schema": {
+        "$ref": "#/definitions/RegisterAccountResponse"
+      }
+    }
+  },
+  "definitions": {
+    "RegisterAccount": {
+      "type": "object",
+      "properties": {
+        "Amount": {
+          "$ref": "#/definitions/Amount"
+        },
+        "Client": {
+          "$ref": "#/definitions/Client"
+        },
+        "Vehicle": {
+          "$ref": "#/definitions/Vehicle"
+        }
+      },
+      "description": "information about clients account"
+    },
+    "RegisterAccountResponse": {
+      "type": "object",
+      "properties": {
+        "AccountId": {
+          "$ref": "#/definitions/AccountId"
+        }
+      },
+      "description": "information about clients account"
+    },
+    "RetrieveAccountResponse": {
+      "type": "object",
+      "properties": {
+        "Account": {
+          "$ref": "#/definitions/Account"
+        }
+      },
+      "description": "information about clients account"
+    },
+    "ValidateAccount": {
+      "type": "object",
+      "properties": {
+        "Amount": {
+          "$ref": "#/definitions/Amount"
+        },
+        "Client": {
+          "$ref": "#/definitions/Client"
+        },
+        "Vehicle": {
+          "$ref": "#/definitions/Vehicle"
+        }
+      },
+      "description": "information required to perform account validation"
+    },
+    "ValidateAccountResponse": {
+      "type": "object",
+      "properties": {
+        "ValidationResult": {
+          "$ref": "#/definitions/ValidationResult"
+        }
+      },
+      "description": "account validation result"
+    },
+    "RegisterPayment": {
+      "type": "object",
+      "properties": {
+        "AccountId": {
+          "$ref": "#/definitions/AccountId"
+        },
+        "Amount": {
+          "$ref": "#/definitions/Amount"
+        }
+      },
+      "description": "information about topping up the account"
+    },
+    "RegisterPaymentResponse": {
+      "type": "object",
+      "properties": {
+        "Payment": {
+          "$ref": "#/definitions/Payment"
+        }
+      },
+      "description": "information about clients account"
+    },
+    "CheckBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "Amount": {
+          "$ref": "#/definitions/Amount"
+        }
+      },
+      "description": "information about topping up the account"
+    },
+    "ChargeFee": {
+      "type": "object",
+      "properties": {
+        "Parking": {
+          "$ref": "#/definitions/Parking"
+        }
+      },
+      "description": "information about amount charged for parking"
+    },
+    "ChargeFeeResponse": {
+      "type": "object",
+      "properties": {
+        "Amount": {
+          "$ref": "#/definitions/Amount"
+        }
+      },
+      "description": "information about amount charged for parking"
+    },
+    "SetRate": {
+      "type": "object",
+      "properties": {
+        "Amount": {
+          "$ref": "#/definitions/Amount"
+        }
+      },
+      "description": "information about parking rate per minute"
+    },
+    "SetRateResponse": {
+      "type": "object",
+      "properties": {
+        "Rate": {
+          "$ref": "#/definitions/Rate"
+        }
+      },
+      "description": "information about clients account"
+    },
+    "StartParking": {
+      "type": "object",
+      "properties": {
+        "AccountId": {
+          "$ref": "#/definitions/AccountId"
+        },
+        "ParkingType": {
+          "$ref": "#/definitions/ParkingType"
+        },
+        "ParkingStartTime": {
+          "$ref": "#/definitions/ParkingStartTime"
+        },
+        "ParkingEndTime": {
+          "$ref": "#/definitions/ParkingEndTime"
+        },
+        "ParkingPeriod": {
+          "$ref": "#/definitions/ParkingPeriod"
+        }
+      },
+      "description": "information about amount charged for parking"
+    },
+    "StartParkingResponse": {
+      "type": "object",
+      "properties": {
+        "ParkingId": {
+          "$ref": "#/definitions/ParkingId"
+        }
+      },
+      "description": "information about amount charged for parking"
+    },
+    "EndParkingResponse": {
+      "type": "object",
+      "properties": {
+        "Amount": {
+          "$ref": "#/definitions/Amount"
+        }
+      },
+      "description": "information about amount charged for parking"
+    },
+    "AccountId": {
+      "$ref": "#/parameters/AccountId_PathParameter"
+    },
+    "ParkingId": {
+      "$ref": "#/parameters/ParkingId_PathParameter"
+    },
+    "PaymentId": {
+      "type": "string",
+      "description": "identification of payment object",
+      "format": "uuid",
+      "example": "1F880E91-18B8-40C9-8363-41C20A5976AB"
+    },
+    "Amount": {
+      "type": "number",
+      "description": "universal amount",
+      "format": "double",
+      "example": "10.00"
+    },
+    "Account": {
+      "type": "object",
+      "properties": {
+        "AccountId": {
+          "$ref": "#/definitions/AccountId"
+        },
+        "Amount": {
+          "$ref": "#/definitions/Amount"
+        },
+        "Client": {
+          "$ref": "#/definitions/Client"
+        },
+        "Vehicle": {
+          "$ref": "#/definitions/Vehicle"
+        }
+      },
+      "description": "information about clients account"
+    },
+    "Client": {
+      "type": "object",
+      "properties": {
+        "FirstName": {
+          "type": "string",
+          "description": "clients first name",
+          "example": "Jan"
+        },
+        "LastName": {
+          "type": "string",
+          "description": "clients last name",
+          "example": "Kowalski"
+        },
+        "Pesel": {
+          "type": "string",
+          "description": "clients pesel identification number",
+          "example": "80112200777"
+        }
+      },
+      "description": "details of clients identification information"
+    },
+    "Vehicle": {
+      "type": "object",
+      "properties": {
+        "RegistrationNumber": {
+          "type": "string",
+          "description": "clients vehicle registration number",
+          "example": "WW12345"
+        },
+        "VinNumber": {
+          "type": "string",
+          "description": "clients vehicle vin number",
+          "example": "JTDZN3EU5FJ016414"
+        },
+        "Brand": {
+          "type": "string",
+          "description": "clients vehicle brand name",
+          "example": "Opel"
+        },
+        "Model": {
+          "type": "string",
+          "description": "clients vehicle brand model name",
+          "example": "Corsa"
+        },
+        "ProductionDate": {
+          "type": "string",
+          "description": "clients vehicle production date",
+          "format": "date",
+          "example": "2018-03-15"
+        }
+      },
+      "description": "details of clients vehicle"
+    },
+    "Parking": {
+      "type": "object",
+      "properties": {
+        "ParkingId": {
+          "$ref": "#/definitions/ParkingId"
+        },
+        "AccountId": {
+          "$ref": "#/definitions/AccountId"
+        },
+        "ParkingType": {
+          "$ref": "#/definitions/ParkingType"
+        },
+        "ParkingStatus": {
+          "$ref": "#/definitions/ParkingStatus"
+        },
+        "ParkingStartTime": {
+          "$ref": "#/definitions/ParkingStartTime"
+        },
+        "ParkingEndTime": {
+          "$ref": "#/definitions/ParkingEndTime"
+        },
+        "ParkingPeriod": {
+          "$ref": "#/definitions/ParkingPeriod"
+        }
+      },
+      "description": "information about parking activity"
+    },
+    "ParkingType": {
+      "type": "string",
+      "description": "DEADLINE is parking until specific hour, PERIOD is parking for specific time",
+      "example": "DEADLINE",
+      "enum": [
+        "DEADLINE",
+        "PERIOD"
+      ]
+    },
+    "ParkingStatus": {
+      "type": "string",
+      "description": "ACTIVE is current parking, COMPLETED is after parking ends, ENDED is before parking ends",
+      "example": "ACTIVE",
+      "enum": [
+        "ACTIVE",
+        "COMPLETED",
+        "ENDED"
+      ]
+    },
+    "ParkingStartTime": {
+      "type": "string",
+      "description": "parking starting hour",
+      "format": "date-time",
+      "example": "2020-07-21T17:32:28Z"
+    },
+    "ParkingEndTime": {
+      "type": "string",
+      "description": "parking ending hour",
+      "format": "date-time",
+      "example": "2020-07-21T17:32:28Z"
+    },
+    "ParkingPeriod": {
+      "type": "number",
+      "description": "parking period, time in seconds between parking start and parking end",
+      "format": "double",
+      "example": "600.00"
+    },
+    "Payment": {
+      "type": "object",
+      "properties": {
+        "PaymentId": {
+          "$ref": "#/definitions/PaymentId"
+        },
+        "AccountId": {
+          "$ref": "#/definitions/AccountId"
+        },
+        "Amount": {
+          "$ref": "#/definitions/Amount"
+        }
+      },
+      "description": "information about topping up the account"
+    },
+    "Rate": {
+      "type": "object",
+      "properties": {
+        "RateAmount": {
+          "$ref": "#/definitions/Amount"
+        }
+      },
+      "description": "information about parking rate per minute"
+    },
+    "ValidationResult": {
+      "type": "object",
+      "properties": {
+        "Result": {
+          "type": "string",
+          "description": "validation result",
+          "enum": [
+            "VALID",
+            "INVALID"
+          ]
+        },
+        "Messages": {
+          "type": "array",
+          "description": "list of validation messages",
+          "items": {
+            "type": "string",
+            "description": "validation message"
+          }
+        }
+      },
+      "description": "generic validation result"
+    },
+    "Fault": {
+      "type": "object",
+      "properties": {
+        "Type": {
+          "type": "string",
+          "description": "type of fault",
+          "enum": [
+            "VALIDATION",
+            "TECHNICAL",
+            "BUSINESS"
+          ]
+        },
+        "Code": {
+          "type": "string",
+          "description": "fault code"
+        },
+        "Message": {
+          "type": "string",
+          "description": "fault message"
+        },
+        "Details": {
+          "type": "string",
+          "description": "fault details"
+        }
+      },
+      "description": "generic fault"
+    }
+  }
+}
